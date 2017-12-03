@@ -17,10 +17,20 @@
 
 		<bean id="exampleBean" class="org.tarena.dao.ExampleBean"></bean>
 		
+		<!-- setter注入  -->
 		<bean id="dataSource" class="org.tarena.dao.JDBCDataSource">
 			<property name="driver" value="com.mysql.jdbc.Driver"></property>
 			<property name="url" value="jdbc:mysql://127.0.0.1:3306/test"></property>
 			<property name="user" value="root"></property>
 			<property name="pwd" value=""></property>
 		</bean>
+		
+		<!-- 构造器注入 -->
+		<bean id="userDAO" class="org.tarena.dao.MysqlUserDAO">
+			<constructor-arg index="0" ref="dataSource"/>
+		</bean>
+		
+		<!-- 自动注入 -->
+		<bean id="userService" class="org.tarena.service.UserService" autowire="byType"></bean>
+		
 </beans>
